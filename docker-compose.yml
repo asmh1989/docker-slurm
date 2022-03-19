@@ -10,6 +10,8 @@ services:
     privileged: true
     volumes:
       - /public:/public
+      - /mnt:/mnt
+      - /etc/localtime:/etc/localtime:ro
     environment:
       - SLURM_NODENAME=gpu_27
     ports:
