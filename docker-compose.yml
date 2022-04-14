@@ -3,17 +3,18 @@ version: "3.9"
 services:
   node:
     image: asmh1989/ubuntu-slurm
-    hostname: gpu_27
+    hostname: gpu27
     container_name: node_gpu_27
     restart: always
     user: admin
     privileged: true
     volumes:
       - /public:/public
+      - ./docker-entrypoint.sh:/etc/slurm/docker-entrypoint.sh
       - /mnt:/mnt
       - /etc/localtime:/etc/localtime:ro
     environment:
-      - SLURM_NODENAME=gpu_27
+      - SLURM_NODENAME=gpu27
     ports:
       - 6818:6818
       - 6817:6817
