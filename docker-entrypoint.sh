@@ -3,6 +3,7 @@
 cd /public/home/sun/slurm_tools/
 sudo bash create_slurm_user_without_sacct.sh
 
+sudo service ssh start
 
 sudo service munge start
 sudo slurmd -N $SLURM_NODENAME -f /public/slurm/slurm.conf

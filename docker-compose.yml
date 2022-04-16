@@ -18,6 +18,7 @@ services:
     ports:
       - 6818:6818
       - 6817:6817
+      - "6666:22"
     extra_hosts:
       - "szdata:192.168.2.26"
     # links:
