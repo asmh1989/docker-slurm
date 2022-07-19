@@ -25,6 +25,9 @@ RUN apt-get install openssh-server wget bzip2 ca-certificates curl git vim  htop
 
 RUN apt-get install sudo build-essential byobu environment-modules -y
 
+# for libGL.so.1
+RUN apt-get install libgl1-mesa-glx -y
+
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

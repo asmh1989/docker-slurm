@@ -13,6 +13,8 @@ services:
       - ./docker-entrypoint.sh:/etc/slurm/docker-entrypoint.sh
       - /mnt:/mnt
       - /etc/localtime:/etc/localtime:ro
+      - /public/slurm/hosts.allow:/etc/hosts.allow
+      - /public/slurm/hosts.deny:/etc/hosts.deny
     environment:
       - SLURM_NODENAME=gpu27
     ports:
