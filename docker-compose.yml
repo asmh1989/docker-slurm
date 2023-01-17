@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   node:
-    image: asmh1989/ubuntu-slurm
+    image: asmh1989/ubuntu-slurm:2.0
     hostname: gpu27
     container_name: node_gpu_27
     restart: always
@@ -19,7 +19,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /public/slurm/hosts.allow:/etc/hosts.allow
       - /public/slurm/hosts.deny:/etc/hosts.deny
-      - /home/tmp:/tmp
+      - /home/tmp:/home/tmp
     environment:
       - SLURM_NODENAME=gpu27
     ports:

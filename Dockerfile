@@ -28,8 +28,8 @@ RUN apt-get install sudo build-essential byobu environment-modules -y
 # for libGL.so.1
 RUN apt-get install libgl1-mesa-glx -y
 
-RUN apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# RUN apt-get clean && \
+#     rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /tmp/slurm
 
@@ -102,7 +102,26 @@ RUN echo "\n# For initiating Modules" | tee -a /etc/bash.bashrc > /dev/null
 RUN echo ". /etc/profile.d/modules.sh" | tee -a /etc/bash.bashrc > /dev/null
 RUN echo "export MODULEPATH=/public/software/modules" | tee -a /etc/bash.bashrc > /dev/null
 
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A4B469963BF863CC
+RUN apt-get update -y && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    build-essential \
+    libseccomp-dev \
+    libglib2.0-dev \
+    pkg-config \
+    squashfs-tools \
+    cryptsetup \
+    runc
+
 WORKDIR /public/home/test
+
+COPY singularity-ce_3.10.4-focal_amd64.deb /public/home/test
+
+RUN dpkg -i singularity-ce_3.10.4-focal_amd64.deb
+
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN rm singularity-ce_3.10.4-focal_amd64.deb
 
 EXPOSE 6817 6818 6819 22
 
